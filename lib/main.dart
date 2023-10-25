@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:untitled/test_helper.dart';
+import 'package:untitled/test_http_helper.dart';
 import 'package:untitled/test_isolate_helper.dart';
 import 'package:untitled/toggle_button.dart';
 
 void main() {
+  HttpClient.enableTimelineLogging = false;
   runApp(const MyApp());
 }
 
@@ -62,6 +66,11 @@ class _MyHomePageState extends State<MyHomePage> {
               activeText: 'startIsolate',
               unActiveText: 'closeIsolate',
             ),
+            ElevatedButton(
+                onPressed: () {
+                  const url = 'https://video-previews.elements.envatousercontent.com/files/94ce7280-f6e5-4c85-ad75-911a1f9cae1c/video_preview_h264.mp4';
+                  TestHttpHelper.startHttpRequest(url);
+                }, child: const Text('startHttpRequest'))
           ],
         ),
       ),
